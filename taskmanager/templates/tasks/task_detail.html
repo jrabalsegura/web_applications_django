@@ -1,0 +1,18 @@
+{% extends "tasks/base.html" %}
+
+{% block content %}
+  <h1>{{ task.title }}</h1>
+  <h2>Description</h2>
+  <p>{{ task.description }}</p>
+  {% if task.file_upload %}
+    <a href="{{ task.file_upload.url }}" download>Download File</a>
+  {% endif %}
+  {% if task.image_upload %}
+    <div>
+      <img src="{{ task.image_upload.url }}" alt="Task Image" style="max-width: 300px;">
+    </div>
+  {% endif %}
+  <a href="{% url 'tasks:task-update' task.id %}">Edit</a>
+  <a href="{% url 'tasks:task-delete' task.id %}">Delete</a>
+  <a href="{% url 'tasks:task-list' %}">List</a>
+{% endblock %}

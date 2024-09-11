@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Task
+from .models import Task, Sprint, Epic
 # Register your models here.
 class TaskAdmin(admin.ModelAdmin):
     list_display = ("title", "description", "status", "created_at", "updated_at", "creator", "owner")
@@ -26,3 +26,6 @@ class TaskAdmin(admin.ModelAdmin):
         return False
 
 admin.site.register(Task, TaskAdmin)
+admin.site.register(Sprint)
+admin.site.register(Epic)
+
