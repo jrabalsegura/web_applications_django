@@ -21,8 +21,8 @@ class Task(models.Model):
     image_upload = models.ImageField(upload_to='tasks/images/', null=True, blank=True)
     creator = models.ForeignKey(
         User, related_name="created_tasks", on_delete=models.CASCADE)
-    owner = models.ForeignKey(User, related_name="owned_tasks", on_delete=models.SET_NULL,
-                              null=True, db_comment="Foreign Key to the User who currently owns the task.")
+    owner = models.ForeignKey(User, related_name="owned_tasks", on_delete=models.CASCADE,
+                              null=False, db_comment="Foreign Key to the User who currently owns the task.")
     epic = models.ForeignKey(
         'Epic', on_delete=models.SET_NULL, null=True, related_name="tasks")
 

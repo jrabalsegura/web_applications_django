@@ -4,7 +4,7 @@ from .models import Task
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['title', 'description', 'status', 'file_upload', 'image_upload']
+        fields = ['title', 'description', 'status', 'owner', 'file_upload', 'image_upload']
         
 class ContactForm(forms.Form):
     from_email = forms.EmailField(required=True)

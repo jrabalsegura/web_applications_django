@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tasks',
     'widget_tweaks',
+    'accounts',
 ]
 
 MIDDLEWARE = [
+    'tasks.middlewares.RequestTimeMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -134,14 +136,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = os.getenv('EMAIL_HOST')
-    EMAIL_PORT = os.getenv('EMAIL_PORT')
-    EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
-    EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
-    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+LOGIN_REDIRECT_URL = 'tasks:task-home'
+LOGOUT_REDIRECT_URL = 'accounts:login'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "localhost"
+EMAIL_PORT = 1025
+EMAIL_USE_TLS = False
 
